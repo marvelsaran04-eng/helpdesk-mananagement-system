@@ -1,0 +1,40 @@
+{% extends 'user.html' %}
+
+{% block title %}My Request{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">My Requests</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Request Type</th>
+                <th>Status</th> <!-- Add status column -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for request in requests %}
+            <tr>
+                <td>{{ request.title }}</td>
+                <td>{{ request.description }}</td>
+                <td>{{ request.location }}</td>
+                <td>{{ request.get_request_type_display }}</td>
+                <td>
+                    {% if request.status == 'assigned' %}
+                        Assigned to {{ request.assigned_agent }}
+                    {% else %}
+                        {{ request.get_status_display }}
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'private_messageu' request_id=request.id %}" >chat</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

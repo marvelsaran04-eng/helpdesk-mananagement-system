@@ -1,0 +1,26 @@
+{% extends 'user.html' %}
+
+{% block title %} Chat{% endblock %}
+
+{% block content %}
+<h2>Messages for Request {{ current_request.title }}</h2>
+
+<!-- Form for sending a new private message -->
+<form method="post" action="{% url 'private_messagea' request_id=current_request.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send Message">
+</form>
+
+<!-- Display existing messages -->
+<ul>
+    {% for message in messages_list %}
+        <li>
+            <strong>{{ message.username }}</strong> ({{ message.timestamp|date:"F j, Y, g:i a" }}):
+            <p>{{ message.content }}</p>
+        </li>
+    {% empty %}
+        <li>No messages found for this request.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

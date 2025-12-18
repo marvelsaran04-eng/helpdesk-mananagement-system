@@ -1,0 +1,51 @@
+{% extends 'user.html' %}
+
+{% block title %}New Request{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">New Request Form</div>
+                <div class="card-body">
+                    {% if success_message %}
+                        <div class="alert alert-success" role="alert">
+                            {{ success_message }}
+                        </div>
+                    {% endif %}{% csrf_token %}
+                    <form method="post">
+                            {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title:</label>
+                            <input type="text" id="title" name="title" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description:</label>
+                            <textarea id="description" name="description" rows="4" cols="50" class="form-control" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location:</label>
+                            <input type="text" id="location" name="location" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="request_type" class="form-label">Request Type:</label>
+                            <select id="request_type" name="request_type" class="form-select" required>
+                                <option value="">Select</option>
+                                <option value="requirements">Requirements</option>
+                                <option value="problems">Problems</option>
+                                <option value="issues">Issues</option>
+                                <option value="complaint">Complaint</option>
+                                <option value="service_request">Service Request</option>
+                                <option value="inquiry">Inquiry</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

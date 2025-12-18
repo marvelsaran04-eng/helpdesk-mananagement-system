@@ -1,0 +1,24 @@
+{% extends 'agent.html' %}
+
+{% block title %}Resolved Requests{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Resolved Requests</h2>
+    <hr>
+    <ul class="list-group">
+        {% for request in resolved_requests %}
+            <li class="list-group-item">
+                <h4>{{ request.title }}</h4>
+                <p><strong>Requested by:</strong> {{ request.user.username }}</p>
+                <p><strong>Description:</strong> {{ request.description }}</p>
+                <p><strong>Location:</strong> {{ request.location }}</p>
+                <p><strong>Request Type:</strong> {{ request.get_request_type_display }}</p>
+               
+            </li>
+        {% empty %}
+            <li class="list-group-item">No resolved requests found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

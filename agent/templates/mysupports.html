@@ -1,0 +1,30 @@
+{% extends 'agent.html' %}
+
+{% block title %}Assigned Requests{% endblock %}
+
+{% block content %}
+<div class="container">
+    
+    <h2>My Supports</h2>
+    <hr>
+    <ul class="list-group">
+        {% for request in assigned_requests %}
+            <li class="list-group-item">
+                <h4>{{ request.title }}</h4>
+                <p><strong>Requested by:</strong> {{ request.user.username }}</p>
+                <p><strong>Description:</strong> {{ request.description }}</p>
+                <p><strong>Location:</strong> {{ request.location }}</p>
+                <p><strong>Request Type:</strong> {{ request.get_request_type_display }}</p>
+                <p><a href="{% url 'private_messagea' request_id=request.id %}" >chat</a></p>
+                <form action="{% url 'my_supports' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="request_id" value="{{ request.id }}">
+                    <button type="submit" class="btn btn-primary">Completed</button>
+                </form>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No assigned requests found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

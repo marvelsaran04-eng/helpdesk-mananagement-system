@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Homepage</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  {% load static %}
+  <style>
+    body {
+      background-color: #f8f9fa; /* Soft grey background */
+      background-image:"heiiiiip.jpg" ;
+    }
+    .jumbotron {
+      background-color: #fff; /* White background for jumbotron */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+      padding: 50px; /* Add some padding */
+    }
+    h1 {
+      color: #007bff; /* Blue heading color */
+    }
+    .lead {
+      color: #6c757d; /* Grey lead text color */
+    }
+    .btn-primary {
+      background-color: #007bff; /* Blue primary button background */
+      border-color: #007bff; /* Blue primary button border color */
+    }
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      border-color: #0056b3; /* Darker blue border on hover */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="jumbotron">
+        <h1 class="display-4">Helpdesk</h1>
+        <p class="lead">Make your requests visible.</p>
+        <hr class="my-4">
+        <p>Sign in or register to get started.</p>
+        <a class="btn btn-primary btn-lg mr-2" href="custom_login" role="button">Login</a>
+        <!-- <a class="btn btn-primary btn-lg" href="register" role="button">Register</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

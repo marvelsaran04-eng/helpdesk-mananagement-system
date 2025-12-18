@@ -1,0 +1,42 @@
+{% extends 'agent.html' %}
+
+{% block title %} Chat{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Messages for Request: <span class="text-primary">{{ current_request.title }}</span></h2>
+
+    <!-- Form for sending a new private message -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="post" action="{% url 'private_messagea' request_id=current_request.id %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Display existing messages -->
+    <div class="card">
+        <div class="card-header">
+            <strong>Message History</strong>
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for message in messages_list %}
+                <li class="list-group-item">
+                    <div>
+                        <strong>{{ message.username }}</strong>
+                        <span class="text-muted small">({{ message.timestamp|date:"F j, Y, g:i a" }})</span>
+                    </div>
+                    <p>{{ message.content }}</p>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-center">No messages found for this request.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

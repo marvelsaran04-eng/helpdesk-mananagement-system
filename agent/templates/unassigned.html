@@ -1,0 +1,33 @@
+{% extends 'agent.html' %}
+
+{% block title %}Unassigned Requests{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if success_message %}
+        <div class="alert alert-success">
+            {{ success_message }}
+        </div>
+    {% endif %}
+    <h2>Unassigned Requests</h2>
+    <hr>
+    <ul class="list-group">
+        {% for request in unassigned_requests %}
+            <li class="list-group-item">
+                <h4>{{ request.title }}</h4>
+                <p><strong>Requested by:</strong> {{ request.user.username }}</p>
+                <p><strong>Description:</strong> {{ request.description }}</p>
+                <p><strong>Location:</strong> {{ request.location }}</p>
+                <p><strong>Request Type:</strong> {{ request.get_request_type_display }}</p>
+                <form action="{% url 'unassigned_requests' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="request_id" value="{{ request.id }}">
+                    <button type="submit" class="btn btn-primary">Manage</button>
+                </form>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No requests found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
